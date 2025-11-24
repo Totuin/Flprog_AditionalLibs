@@ -18,7 +18,6 @@
 class FlprogSharicAuto
 {
 public:
-  FlprogSharicAuto() {};
   void pool();
   void pusk();
   void stop();
@@ -50,7 +49,7 @@ public:
   void setOpenPartFeedTimeout(uint32_t timeout) { _openPartFeedTimeout = timeout; };
 
   uint8_t getCurrentMotorMode() { return _currentMotorMode; };
-  uint8_t getCurrentTargetMotorPosition() { return _currentTargetMotorPosition; };
+  int32_t getCurrentTargetMotorPosition() { return _currentTargetMotorPosition; };
   uint32_t getCurrentMotorSpeed() { return _currentMotorSpeed; };
   bool getOpenClampOutputStatus() { return _openClampOutputStatus; };
   bool getCloseClampOutputStatus() { return _closeClampOutputStatus; };

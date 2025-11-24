@@ -52,7 +52,7 @@ void FlprogSharicAuto::pool()
   }
   if (_currentStep == FLPROG_SHARIC_AUTO_MOVE_TO_START_SIDE_MILLING_CUTTER_POSITION_STEP)
   {
-    executeMoveToStartSideMillingCutterPosition();
+    executeMoveToStartSideMillingCutterPositionStep();
     return;
   }
   if (_currentStep == FLPROG_SHARIC_AUTO_MOVE_TO_END_SIDE_MILLING_CUTTER_POSITION_STEP)
@@ -187,7 +187,7 @@ void FlprogSharicAuto::executeMoveToStartSlotСutterPositionStep()
   if (_currentPosition >= _startSlotСutterPosition)
   {
     _currentStep = FLPROG_SHARIC_AUTO_MOVE_TO_END_SLOT_CUTTER_POSITION_STEP;
-    executeMoveToEndSlotСutterPositionStep()
+    executeMoveToEndSlotСutterPositionStep();
   }
 }
 
@@ -200,7 +200,7 @@ void FlprogSharicAuto::executeMoveToEndSlotСutterPositionStep()
   if (_currentPosition >= _endSlotСutterPosition)
   {
     _currentStep = FLPROG_SHARIC_AUTO_MOVE_TO_START_SIDE_MILLING_CUTTER_POSITION_STEP;
-    executeMoveToStartSideMillingCutterPosition();
+    executeMoveToStartSideMillingCutterPositionStep();
   }
 }
 
@@ -226,6 +226,6 @@ void FlprogSharicAuto::executeMoveToEndSideMillingCutterPositionStep()
   if (_currentPosition <= _endSideMillingCutterPosition)
   {
     _currentStep = FLPROG_SHARIC_AUTO_FIND_ZERO_STEP;
-    executeFindZeroStep()
+    executeFindZeroStep();
   }
 }
