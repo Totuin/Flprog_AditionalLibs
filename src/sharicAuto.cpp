@@ -2,6 +2,10 @@
 
 void FlprogSharicAuto::pool()
 {
+  if(_stopCommand)
+  {
+    _stopCommand = false;
+  }
   if (!_isRun)
   {
     return;
@@ -81,6 +85,7 @@ void FlprogSharicAuto::stop()
     return;
   }
   _isRun = false;
+  _isInit = false;
   _currentMotorMode = FLPROG_STOP_STEP_MOTOR_MODE;
   _currentStep = FLPROG_SHARIC_AUTO_STOP_STEP;
 }
@@ -93,17 +98,19 @@ void FlprogSharicAuto::pusk()
   }
   _isRun = true;
   _currentStep = FLPROG_SHARIC_AUTO_FIND_ZERO_STEP;
-}
-
-void FlprogSharicAuto::executeFindZeroStep()
-{
+  _isInit = false;
   if (_currentPosition >= 0)
   {
     moveToStartFindZeroPosition();
     return;
   }
+}
+
+void FlprogSharicAuto::executeFindZeroStep()
+{
   _currentStep = FLPROG_SHARIC_AUTO_FIND_ZERO_STEP;
   _currentMotorMode = FLPROG_FIND_ZERO_STEP_MOTOR_MODE;
+  _currentMotorSpeed = _findZeroSpeed;
   if (_currentMotorStatus == FLPROG_END_FIND_ZERO_STEP_MOTOR_STATUS)
   {
     _currentStep = FLPROG_SHARIC_AUTO_OPEN_CLAMP_STEP;
@@ -132,6 +139,20 @@ void FlprogSharicAuto::executeOpenClampStep()
   _openClampOutputStatus = true;
   if (_openClampPinStatus)
   {
+    if (_isInit)
+    {
+      _partsCount++;
+      if (_mode == FLPROG_SHARIC_AUTO_SINGLE_CYCLE_MODE)
+      {
+        _stopCommand = true;
+        stop();
+        return;
+      }
+    }
+    else
+    {
+      _isInit = true;
+    }
     _currentStep = FLPROG_SHARIC_AUTO_OPEN_PART_FEED_STEP;
     _startTimerTime = millis();
     executeOpenPartFeedStep();
@@ -171,7 +192,7 @@ void FlprogSharicAuto::executeClosePartFeedStep()
   _closePartFeedOutputStatus = true;
   _openPartFeedOutputStatus = false;
   _currentMotorMode = FLPROG_STOP_STEP_MOTOR_MODE;
-  if (flprog::isTimer(_startTimerTime, _openPartFeedTimeout))
+  if (flprog::isTimer(_startTimerTime, _closePartFeedTimeout))
   {
     _currentStep = FLPROG_SHARIC_AUTO_MOVE_TO_START_SLOT_CUTTER_POSITION_STEP;
     executeMoveToStartSlotСutterPositionStep();

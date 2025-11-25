@@ -15,6 +15,9 @@
 #define FLPROG_SHARIC_AUTO_MOVE_TO_START_SIDE_MILLING_CUTTER_POSITION_STEP 9
 #define FLPROG_SHARIC_AUTO_MOVE_TO_END_SIDE_MILLING_CUTTER_POSITION_STEP 10
 
+#define FLPROG_SHARIC_AUTO_SINGLE_CYCLE_MODE 0
+#define FLPROG_SHARIC_AUTO_CONTINUOUS_MODE 1
+
 class FlprogSharicAuto
 {
 public:
@@ -22,6 +25,7 @@ public:
   void pusk();
   void stop();
   void setWorkMode(bool value);
+  void setMode(uint8_t mode) { _mode = mode; };
   void setFindZeroSpeed(uint32_t speed) { _findZeroSpeed = speed; };
   void setCurrentPosition(int32_t position) { _currentPosition = position; };
 
@@ -47,6 +51,9 @@ public:
   void setCloseClampPinStatus(bool value) { _closeClampPinStatus = value; };
 
   void setOpenPartFeedTimeout(uint32_t timeout) { _openPartFeedTimeout = timeout; };
+  void setClosePartFeedTimeout(uint32_t timeout) { _closePartFeedTimeout = timeout; };
+
+  void resetPartsCount() { _partsCount = 0; };
 
   uint8_t getCurrentMotorMode() { return _currentMotorMode; };
   int32_t getCurrentTargetMotorPosition() { return _currentTargetMotorPosition; };
@@ -55,6 +62,8 @@ public:
   bool getCloseClampOutputStatus() { return _closeClampOutputStatus; };
   bool getOpenPartFeedOutputStatus() { return _openPartFeedOutputStatus; };
   bool getClosePartFeedOutputStatus() { return _closePartFeedOutputStatus; };
+  uint32_t getPartsCount() { return _partsCount; };
+  bool getStopCommand() { return _stopCommand; };
 
 protected:
   void executeFindZeroStep();
@@ -96,4 +105,9 @@ protected:
   bool _closePartFeedOutputStatus = false;
   uint32_t _startTimerTime = 0;
   uint32_t _openPartFeedTimeout = 1000;
+  uint32_t _closePartFeedTimeout = 1000;
+  bool _isInit = false;
+  uint32_t _partsCount = 0;
+  uint8_t _mode = FLPROG_SHARIC_AUTO_CONTINUOUS_MODE;
+  bool _stopCommand = false;
 };
