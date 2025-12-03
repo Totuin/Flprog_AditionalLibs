@@ -53,8 +53,6 @@ public:
   void setOpenPartFeedTimeout(uint32_t timeout) { _openPartFeedTimeout = timeout; };
   void setClosePartFeedTimeout(uint32_t timeout) { _closePartFeedTimeout = timeout; };
 
-  void resetPartsCount() { _partsCount = 0; };
-
   uint8_t getCurrentMotorMode() { return _currentMotorMode; };
   int32_t getCurrentTargetMotorPosition() { return _currentTargetMotorPosition; };
   uint32_t getCurrentMotorSpeed() { return _currentMotorSpeed; };
@@ -62,8 +60,8 @@ public:
   bool getCloseClampOutputStatus() { return _closeClampOutputStatus; };
   bool getOpenPartFeedOutputStatus() { return _openPartFeedOutputStatus; };
   bool getClosePartFeedOutputStatus() { return _closePartFeedOutputStatus; };
-  uint32_t getPartsCount() { return _partsCount; };
   bool getStopCommand() { return _stopCommand; };
+  bool getHasNewPart() { return _hasNewPart; };
 
 protected:
   void executeFindZeroStep();
@@ -107,7 +105,7 @@ protected:
   uint32_t _openPartFeedTimeout = 1000;
   uint32_t _closePartFeedTimeout = 1000;
   bool _isInit = false;
-  uint32_t _partsCount = 0;
   uint8_t _mode = FLPROG_SHARIC_AUTO_CONTINUOUS_MODE;
   bool _stopCommand = false;
+  bool _hasNewPart = false;
 };

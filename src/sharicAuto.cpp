@@ -2,9 +2,13 @@
 
 void FlprogSharicAuto::pool()
 {
-  if(_stopCommand)
+  if (_stopCommand)
   {
     _stopCommand = false;
+  }
+  if (_hasNewPart)
+  {
+    _hasNewPart = false;
   }
   if (!_isRun)
   {
@@ -141,7 +145,7 @@ void FlprogSharicAuto::executeOpenClampStep()
   {
     if (_isInit)
     {
-      _partsCount++;
+      _hasNewPart = true;
       if (_mode == FLPROG_SHARIC_AUTO_SINGLE_CYCLE_MODE)
       {
         _stopCommand = true;
