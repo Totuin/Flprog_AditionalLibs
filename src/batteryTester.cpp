@@ -138,7 +138,7 @@ void FlprogBatteryTester::setOutputsStatus()
   {
     _mainRelayStatus = false;
     _changeoverRelayStatus = false;
-    return
+    return;
   }
   if ((_currentStep == FLPROG_BATTERY_TESTER_INITIAL_CHARGE_STEP) || (_currentStep == FLPROG_BATTERY_TESTER_HAND_CHARGE_STEP) || (_currentStep == FLPROG_BATTERY_TESTER_FINAL_CHARGE_STEP))
   {
