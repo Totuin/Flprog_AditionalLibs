@@ -1,0 +1,76 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+#######################################
+# # Datatypes (KEYWORD1)
+#######################################
+FlprogBatteryTester	KEYWORD1
+FlprogSharicAuto	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+getChangeoverRelayStatus	KEYWORD2
+getCloseClampOutputStatus	KEYWORD2
+getClosePartFeedOutputStatus	KEYWORD2
+getCurrentMotorMode	KEYWORD2
+getCurrentMotorSpeed	KEYWORD2
+getCurrentStep	KEYWORD2
+getCurrentTargetMotorPosition	KEYWORD2
+getHasNewPart	KEYWORD2
+getMainRelayStatus	KEYWORD2
+getOpenClampOutputStatus	KEYWORD2
+getOpenPartFeedOutputStatus	KEYWORD2
+getResidualCapacity	KEYWORD2
+getStopCommand	KEYWORD2
+pool	KEYWORD2
+pusk	KEYWORD2
+setCloseClampPinStatus	KEYWORD2
+setClosePartFeedTimeout	KEYWORD2
+setCurrent	KEYWORD2
+setCurrentMotorStatus	KEYWORD2
+setCurrentPosition	KEYWORD2
+setEndChargeCurrent	KEYWORD2
+setEndChargeTime	KEYWORD2
+setEndDischargeVoltage	KEYWORD2
+setEndSideMillingCutterPosition	KEYWORD2
+setEndSideMillingCutterSpeed	KEYWORD2
+setEndSlotСutterPosition	KEYWORD2
+setEndSlotСutterSpeed	KEYWORD2
+setFindZeroSpeed	KEYWORD2
+setMode	KEYWORD2
+setOpenClampPinStatus	KEYWORD2
+setOpenPartFeedTimeout	KEYWORD2
+setPermissionMoveLeft	KEYWORD2
+setPermissionMoveRight	KEYWORD2
+setStartFindZeroPosition	KEYWORD2
+setStartSideMillingCutterPosition	KEYWORD2
+setStartSideMillingCutterSpeed	KEYWORD2
+setStartSlotСutterPosition	KEYWORD2
+setStartSlotСutterSpeed	KEYWORD2
+setVoltage	KEYWORD2
+setWorkMode	KEYWORD2
+setZeroPinStatus	KEYWORD2
+stop	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+FLPROG_BATTERY_TESTER_DISCHARGE_STEP	LITERAL1
+FLPROG_BATTERY_TESTER_FINAL_CHARGE_STEP	LITERAL1
+FLPROG_BATTERY_TESTER_INITIAL_CHARGE_STEP	LITERAL1
+FLPROG_BATTERY_TESTER_STOP_STEP	LITERAL1
+FLPROG_BATTERY_TESTER_WAITING_FOR_STOP_STEP	LITERAL1
+FLPROG_SHARIC_AUTO_CLOSE_CLAMP_STEP	LITERAL1
+FLPROG_SHARIC_AUTO_CLOSE_PART_FEED_STEP	LITERAL1
+FLPROG_SHARIC_AUTO_CONTINUOUS_MODE	LITERAL1
+FLPROG_SHARIC_AUTO_FIND_ZERO_STEP	LITERAL1
+FLPROG_SHARIC_AUTO_GOTO_START_FIND_ZERO_STEP_POSITION	LITERAL1
+FLPROG_SHARIC_AUTO_MOVE_TO_END_SIDE_MILLING_CUTTER_POSITION_STEP	LITERAL1
+FLPROG_SHARIC_AUTO_MOVE_TO_END_SLOT_CUTTER_POSITION_STEP	LITERAL1
+FLPROG_SHARIC_AUTO_MOVE_TO_START_SIDE_MILLING_CUTTER_POSITION_STEP	LITERAL1
+FLPROG_SHARIC_AUTO_MOVE_TO_START_SLOT_CUTTER_POSITION_STEP	LITERAL1
+FLPROG_SHARIC_AUTO_OPEN_CLAMP_STEP	LITERAL1
+FLPROG_SHARIC_AUTO_OPEN_PART_FEED_STEP	LITERAL1
+FLPROG_SHARIC_AUTO_SINGLE_CYCLE_MODE	LITERAL1
+FLPROG_SHARIC_AUTO_STOP_STEP	LITERAL1
