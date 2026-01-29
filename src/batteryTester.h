@@ -30,6 +30,7 @@ public:
   bool getMainRelayStatus() { return _mainRelayStatus; };
   bool getChangeoverRelayStatus() { return _changeoverRelayStatus; };
   uint8_t getCurrentStep() { return _currentStep; };
+  uint8_t getErrorCode() { return _errorCode; };
 
 protected:
   void executeChargeStep();
@@ -51,4 +52,5 @@ protected:
   bool _mainRelayStatus = false;
   bool _changeoverRelayStatus = false;
   bool _polarityReversal = false;
+  uint8_t _errorCode = 0;
 };
