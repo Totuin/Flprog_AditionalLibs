@@ -24,6 +24,8 @@ void FlprogBatteryTester::pool()
     _pusk = false;
     _handCharge = false;
     _handDischarge = false;
+    _residualCapacity = 0;
+    _startTimerCounterTime = millis();
     setOutputsStatus();
     return;
   }
@@ -38,6 +40,7 @@ void FlprogBatteryTester::pool()
     _pusk = false;
     _handCharge = false;
     _handDischarge = false;
+    _residualCapacity = 0;
     setOutputsStatus();
     return;
   }
@@ -92,9 +95,14 @@ void FlprogBatteryTester::pool()
 
 void FlprogBatteryTester::executeChargeStep()
 {
+  if (_errorCode == 1)
+  {
+    return;
+  }
   if (abs(_current) > _endChargeCurrent)
   {
     _isWhiteTimeout = false;
+    _startTimerTime = millis();
     setOutputsStatus();
     return;
   }
@@ -111,6 +119,8 @@ void FlprogBatteryTester::executeChargeStep()
     {
       _currentStep = FLPROG_BATTERY_TESTER_DISCHARGE_STEP;
       _startTimerTime = millis();
+      _startTimerCounterTime = millis();
+      _isWhiteTimeout = false;
       setOutputsStatus();
       executeDischargeStep();
       return;
@@ -122,14 +132,34 @@ void FlprogBatteryTester::executeChargeStep()
 
 void FlprogBatteryTester::executeDischargeStep()
 {
-
-  if (abs(_voltage) < _endDischargeVoltage)
+  if (_errorCode == 2)
+  {
+    return;
+  }
+  if (abs(_voltage) > _endDischargeVoltage)
+  {
+    _isWhiteTimeout = false;
+    _startTimerTime = millis();
+    setOutputsStatus();
+    return;
+  }
+  if (!_isWhiteTimeout)
+  {
+    _startTimerTime = millis();
+    _isWhiteTimeout = true;
+    setOutputsStatus();
+    return;
+  }
+  if (flprog::isTimer(_startTimerTime, 60000))
   {
     _currentStep = FLPROG_BATTERY_TESTER_FINAL_CHARGE_STEP;
+    _startTimerTime = millis();
+    _isWhiteTimeout = false;
     setOutputsStatus();
     executeChargeStep();
     return;
   }
+  setOutputsStatus();
 }
 
 void FlprogBatteryTester::setOutputsStatus()
@@ -160,10 +190,10 @@ void FlprogBatteryTester::setOutputsStatus()
     {
       _errorCode = 2;
     }
-    if (flprog::isTimer(_startTimerTime, 1000))
+    if (flprog::isTimer(_startTimerCounterTime, 1000))
     {
       _residualCapacity += abs(_current);
-      _startTimerTime = millis();
+      _startTimerCounterTime = millis();
     }
     _mainRelayStatus = true;
     _changeoverRelayStatus = false;

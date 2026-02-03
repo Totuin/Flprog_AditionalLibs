@@ -14,8 +14,8 @@ class FlprogBatteryTester
 {
 public:
   void pool();
-  void pusk(){_pusk = true; };
-  void stop(){_stop = true; };
+  void pusk() { _pusk = true; };
+  void stop() { _stop = true; };
   void handCharge() { _handCharge = true; };
   void handDischarge() { _handDischarge = true; };
   void setPolarityReversal(bool value) { _polarityReversal = value; };
@@ -27,9 +27,14 @@ public:
   void setEndDischargeVoltage(int16_t voltage) { _endDischargeVoltage = voltage; };
 
   uint32_t getResidualCapacity() { return (uint32_t)((_residualCapacity / 3600.0)); };
+  uint32_t getRawResidualCapacity() { return _residualCapacity; };
+  void setRawResidualCapacity(uint32_t residualCapacity) { _residualCapacity = residualCapacity; };
+
   bool getMainRelayStatus() { return _mainRelayStatus; };
   bool getChangeoverRelayStatus() { return _changeoverRelayStatus; };
   uint8_t getCurrentStep() { return _currentStep; };
+  void setCurrentStep(uint8_t currentStep) { _currentStep = currentStep; };
+
   uint8_t getErrorCode() { return _errorCode; };
 
 protected:
@@ -39,15 +44,16 @@ protected:
   bool _pusk = false;
   bool _stop = false;
   bool _handCharge = false;
-  bool _handDischarge =false;
+  bool _handDischarge = false;
   uint8_t _currentStep = FLPROG_BATTERY_TESTER_STOP_STEP;
   int16_t _current = 0;
   int16_t _voltage = 0;
   uint32_t _endChargeTime = 0;
   int16_t _endChargeCurrent = 0;
-  uint32_t _startTimerTime = 0;
+  uint32_t _startTimerTime = millis();
+  uint32_t _startTimerCounterTime = millis();
   bool _isWhiteTimeout = false;
-  uint32_t _residualCapacity = 0;       // Остаточная емкость в мАcek
+  uint32_t _residualCapacity = 0;       // Остаточная емкость в мА/cek
   int16_t _endDischargeVoltage = 10000; // Напряжение конца разряда в мВ
   bool _mainRelayStatus = false;
   bool _changeoverRelayStatus = false;
