@@ -17,12 +17,16 @@ getCurrentMotorMode	KEYWORD2
 getCurrentMotorSpeed	KEYWORD2
 getCurrentStep	KEYWORD2
 getCurrentTargetMotorPosition	KEYWORD2
+getErrorCode	KEYWORD2
 getHasNewPart	KEYWORD2
 getMainRelayStatus	KEYWORD2
 getOpenClampOutputStatus	KEYWORD2
 getOpenPartFeedOutputStatus	KEYWORD2
+getRawResidualCapacity	KEYWORD2
 getResidualCapacity	KEYWORD2
 getStopCommand	KEYWORD2
+handCharge	KEYWORD2
+handDischarge	KEYWORD2
 pool	KEYWORD2
 pusk	KEYWORD2
 setCloseClampPinStatus	KEYWORD2
@@ -30,6 +34,7 @@ setClosePartFeedTimeout	KEYWORD2
 setCurrent	KEYWORD2
 setCurrentMotorStatus	KEYWORD2
 setCurrentPosition	KEYWORD2
+setCurrentStep	KEYWORD2
 setEndChargeCurrent	KEYWORD2
 setEndChargeTime	KEYWORD2
 setEndDischargeVoltage	KEYWORD2
@@ -43,6 +48,8 @@ setOpenClampPinStatus	KEYWORD2
 setOpenPartFeedTimeout	KEYWORD2
 setPermissionMoveLeft	KEYWORD2
 setPermissionMoveRight	KEYWORD2
+setPolarityReversal	KEYWORD2
+setRawResidualCapacity	KEYWORD2
 setStartFindZeroPosition	KEYWORD2
 setStartSideMillingCutterPosition	KEYWORD2
 setStartSideMillingCutterSpeed	KEYWORD2
@@ -58,6 +65,8 @@ stop	KEYWORD2
 #######################################
 FLPROG_BATTERY_TESTER_DISCHARGE_STEP	LITERAL1
 FLPROG_BATTERY_TESTER_FINAL_CHARGE_STEP	LITERAL1
+FLPROG_BATTERY_TESTER_HAND_CHARGE_STEP	LITERAL1
+FLPROG_BATTERY_TESTER_HAND_DISCHARGE_STEP	LITERAL1
 FLPROG_BATTERY_TESTER_INITIAL_CHARGE_STEP	LITERAL1
 FLPROG_BATTERY_TESTER_STOP_STEP	LITERAL1
 FLPROG_BATTERY_TESTER_WAITING_FOR_STOP_STEP	LITERAL1
